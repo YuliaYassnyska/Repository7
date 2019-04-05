@@ -1,0 +1,42 @@
+class Elevator:
+
+  _numOfElevatorsWasRepaired = 0
+
+  def __init__(self,
+               nameOfManufactorer="NoName", carryingCapacityInKilograms=0, enginePowerConsumptionInWatts=0,
+               serviceCompany="NoCompany", numberOfPeopleInside=0, colorOfElevator = "NoColor"
+         ):
+      self._name = nameOfManufactorer
+      self._carryingCapacity = carryingCapacityInKilograms
+      self._enginePowerConsumption = enginePowerConsumptionInWatts
+      self._serviceCompany = serviceCompany
+      self._numberOfPeopleInside = numberOfPeopleInside
+      self._colorOfElevator = colorOfElevator
+
+  def __del__(self):
+    print("I have deleted", self._name)
+    print("I have deleted %s" % self._name)
+    print(f"{self._name} was deleted")
+
+  def __str__(self):
+    return ', '.join((f"{name[1:]} = {capacity}" for name, capacity in self.__dict__.items()))
+
+  __repr__ = __str__
+
+  @staticmethod
+  def repairElevators(numberOfRepairedElevators):
+    Elevator._numOfElevatorsWasRepaired += numberOfRepairedElevators
+
+def main():
+  firstElevator = Elevator("4g++", 1000, 250, "OCББ", 6, "Yellow")
+  secondElevator = Elevator("5g++")
+  thirdElavator = Elevator("6g++", numberOfPeopleInside = 5)
+  print(firstElevator)
+  print(secondElevator)
+  print(thirdElavator)
+  print(Elevator._numOfElevatorsWasRepaired)
+  Elevator.repairElevators(3)
+  print(Elevator._numOfElevatorsWasRepaired)
+
+if __name__ == '__main__':
+  main()
